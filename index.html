@@ -8,17 +8,22 @@
     <title>Thinkful-Capstone1-API</title>
 </head>
 <body>
-    <header>
-        <h1>Thinkful-Capstone1-API</h1>
+    <header role="banner">
+        
     </header>
     <main role="main">
-        <div class="background-video">
-            <div class="overlay"></div>
-            <div id="player"></div>
-        </div>
-        <div class="right-arrow-next">
-            <p>right arrow goes here</p>
-        </div>
+
+        <section role="splash-page" class="splash-page" id="js-splash-page"></section>
+        <section role="video-page" class="video-page" id="js-video-page">
+            <div class="background-video">
+                <div class="overlay">
+                    <h1 id="header-home">Thinkful-Capstone1-API</h1>
+                    <button class="previous-button" id="js-previous-button" type="button">Previous</button>
+                    <button class="next-button" id="js-next-button" type="button">Next</button>
+                </div>
+                <div id="player"></div>
+            </div>
+        </section>
     </main>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="index.js"></script>

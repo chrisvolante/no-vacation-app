@@ -30,9 +30,20 @@
     z-index: 1;
 }
 
-.right-arrow-next {
-    position: absolute;
-    right: 5;
-    color: white;
-    z-index: -1;
+.overlay .next-button {
+    right: 10;
+}
+
+#js-video-page {
+    display: none;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.splash-page {
+    padding: 70px 0;
+    text-align: center;
 }
