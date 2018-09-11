@@ -28,24 +28,28 @@ function handleCategoryButton() {
         $('#js-video-page').show();
         videoCategory = $(this).attr("data-ref");
         videoIDCounter = 0;
-        if (player) {
-            player.loadVideoById(allVideos[videoCategory][videoIDCounter]);
-        } else {
-            player = new YT.Player('player', {
-                videoId: allVideos[videoCategory][videoIDCounter],
-                events: {
-                    'onReady': onPlayerReady
-                },
-                playerVars: {
-                    autoplay: 1,
-                    start: 38,
-                    controls: 0,
-                    modestbranding: 1,
-                    loop: 1
-                }
-              });
-        };
+        startPlayer(videoCategory, videoIDCounter);
     })
+}
+
+function startPlayer(videoCategory, videoIDCounter){
+    if (player) {
+        player.loadVideoById(allVideos[videoCategory][videoIDCounter]);
+    } else {
+        player = new YT.Player('player', {
+            videoId: allVideos[videoCategory][videoIDCounter],
+            events: {
+                'onReady': onPlayerReady
+            },
+            playerVars: {
+                autoplay: 1,
+                start: 38,
+                controls: 0,
+                modestbranding: 1,
+                loop: 1
+            }
+          });
+    };
 }
 
 function handleRightArrowNext() {
@@ -76,14 +80,32 @@ function handleHeaderHome() {
         player.stopVideo();
         $('#js-video-page').hide();
         $('#js-splash-page').show();
+
+        $('#landing').show();
+        
+    });
+}
+
+function handleLandingPage(){
+    $('.category').on('click', function(event) {
+        console.log(this.id);
+        let videoCategory = this.id
+        $('#landing').hide();
+        $('#mainplayer').show()
+        $('#js-video-page').show();
+
+        startPlayer(videoCategory, 0);
+
     });
 }
 
 function driver() {
-    renderSplashPage();
+    // renderSplashPage();
     handleRightArrowNext();
     handleLeftArrowPrevious();
     handleHeaderHome();
+
+    handleLandingPage();
 }
 
 $(driver);
