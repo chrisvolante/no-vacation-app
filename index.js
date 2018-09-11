@@ -6,40 +6,46 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var player;
 
 var videoIDCounter = 0;
-var VIDEOS = ['PZvd694DPtQ', 'EZK707gSfSo', 'LzOMy5-lE_g', 'zfKLjO6Tvfw', '3biyt-S_5xk'];
-
-function onYouTubeIframeAPIReady() {
-    $('#js-begin-button').click(function(event) {
-        console.log("begin button clicked")
-        $('#js-splash-page').hide();
-        $('#js-video-page').show();
-        player = new YT.Player('player', {
-            videoId: VIDEOS[videoIDCounter],
-            events: {
-                'onReady': onPlayerReady
-            },
-            playerVars: {
-                autoplay: 1,
-                start: 38,
-                controls: 0,
-                modestbranding: 1,
-                loop: 1
-            }
-          });
-    });
-}
+var videoCategory = 'Nature';
 
 function onPlayerReady(event) {
-    player.playVideo();
+    console.log(player);
+    var fn = function(){ player.playVideo(); } 
+    setTimeout(fn, 1000);
 }
 
 function renderSplashPage() {
-    $('#js-splash-page').append(`
-        <div class="container">
-            <h2>Choose from a category below for relaxing visuals.</h2>
-            <button class="begin-button" id="js-begin-button" type="button">Begin</button>
-        </div>
-    `);
+    for(let key in allVideos)
+        {
+            $('#js-splash-page').append(`<button class="category-button" data-ref="${key}">${key}</button>`)
+        } 
+    handleCategoryButton();
+}
+
+function handleCategoryButton() {
+    $('.category-button').on('click', function(event) {
+        event.preventDefault();
+        $('#js-video-page').show();
+        videoCategory = $(this).attr("data-ref");
+        videoIDCounter = 0;
+        if (player) {
+            player.loadVideoById(allVideos[videoCategory][videoIDCounter]);
+        } else {
+            player = new YT.Player('player', {
+                videoId: allVideos[videoCategory][videoIDCounter],
+                events: {
+                    'onReady': onPlayerReady
+                },
+                playerVars: {
+                    autoplay: 1,
+                    start: 38,
+                    controls: 0,
+                    modestbranding: 1,
+                    loop: 1
+                }
+              });
+        };
+    })
 }
 
 function handleRightArrowNext() {
@@ -48,7 +54,7 @@ function handleRightArrowNext() {
         console.log("right arrow clicked");
         if (videoIDCounter < 4) {
             videoIDCounter++;
-            player.loadVideoById(VIDEOS[videoIDCounter]);
+            player.loadVideoById(allVideos[videoCategory][videoIDCounter]);
         }
     });
 }
@@ -59,7 +65,7 @@ function handleLeftArrowPrevious() {
         console.log("left arrow clicked");
         if (videoIDCounter > 0) {
             videoIDCounter--;
-            player.loadVideoById(VIDEOS[videoIDCounter]);
+            player.loadVideoById(allVideos[videoCategory][videoIDCounter]);
         }
     });
 }
