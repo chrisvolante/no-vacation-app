@@ -4,6 +4,30 @@
     padding: 0;
   }
 
+#mainlanding {
+    width: 100%;
+    height: 400px;
+    background-image: url("https://www.meetup.com/mu_static/en-US/4506f772b457b135bbf46d1a6bbeb365.jpg");
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.category {
+    display: inline-block;
+    height: 160px;
+    width: 253px;
+    background-image: url("https://secure.meetupstatic.com/photos/event/2/e/a/7/600_450131943.jpeg");
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+ #mainplayer {
+    display: none;
+ } 
+
 .background-video {
     max-width: 960px;
     padding-left: 1rem;
