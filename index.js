@@ -4,12 +4,10 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 var player;
-
 var videoIDCounter = 0;
 var videoCategory = 'Nature';
 
 function onPlayerReady(event) {
-    console.log(player);
     var fn = function(){ player.playVideo(); } 
     setTimeout(fn, 1000);
 }
@@ -34,10 +32,19 @@ function startPlayer(videoCategory, videoIDCounter){
     };
 }
 
+function handleLandingPage(){
+    $('.category').on('click', function(event) {
+        videoCategory = this.id;
+        $('#landing').hide();
+        $('#mainplayer').show()
+        $('#js-video-page').show();
+        startPlayer(videoCategory, 0);
+    });
+}
+
 function handleRightArrowNext() {
     $('#js-next-button').on('click', function(event) {
         event.preventDefault();
-        console.log("right arrow clicked");
         if (videoIDCounter < 4) {
             videoIDCounter++;
             player.loadVideoById(allVideos[videoCategory][videoIDCounter]);
@@ -48,7 +55,6 @@ function handleRightArrowNext() {
 function handleLeftArrowPrevious() {
     $('#js-previous-button').on('click', function(event) {
         event.preventDefault();
-        console.log("left arrow clicked");
         if (videoIDCounter > 0) {
             videoIDCounter--;
             player.loadVideoById(allVideos[videoCategory][videoIDCounter]);
@@ -58,36 +64,20 @@ function handleLeftArrowPrevious() {
 
 function handleHeaderHome() {
     $('#header-home').on('click', function(event) {
-        console.log("header-home clicked");
+        videoIDCounter = 0;
         player.stopVideo();
         $('#js-video-page').hide();
         $('#js-splash-page').show();
-
         $('#landing').show();
         
     });
 }
 
-function handleLandingPage(){
-    $('.category').on('click', function(event) {
-        console.log(this.id);
-        let videoCategory = this.id;
-        console.log(videoCategory);
-        $('#landing').hide();
-        $('#mainplayer').show()
-        $('#js-video-page').show();
-
-        startPlayer(videoCategory, 0);
-
-    });
-}
-
 function driver() {
+    handleLandingPage();
     handleRightArrowNext();
     handleLeftArrowPrevious();
     handleHeaderHome();
-
-    handleLandingPage();
 }
 
 $(driver);
