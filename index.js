@@ -28,6 +28,7 @@ function startPlayer(videoCategory, videoIDCounter){
                 start: 38,
                 controls: 0,
                 modestbranding: 1,
+                showinfo: 0,
                 loop: 1
             }
           });
@@ -54,7 +55,7 @@ function handleRightArrowNext() {
 
         timeOut = setTimeout(function() {
             $('#js-next-button').hide();
-        }, 2000);
+        }, 4000);
     });
 
     $('#js-next-button').on('click', function(event) {
@@ -78,7 +79,7 @@ function handleLeftArrowPrevious() {
 
         timeOut = setTimeout(function() {
             $('#js-previous-button').hide();
-        }, 2000);
+        }, 4000);
     });
 
     $('#js-previous-button').on('click', function(event) {
@@ -102,7 +103,7 @@ function handleHeaderHome() {
 
         timeOut = setTimeout(function() {
             $('#header-home').hide();
-        }, 2000);
+        }, 4000);
     });
 
     $('#header-home').on('click', function(event) {
