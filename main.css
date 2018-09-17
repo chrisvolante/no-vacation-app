@@ -20,7 +20,11 @@
 
 #mainlanding h1 {
     margin-bottom: 60px;
-    padding-top: 145px;
+    padding-top: 145px; 
+}
+
+.container-row {
+    margin-top: 100px;
 }
 
 .row {

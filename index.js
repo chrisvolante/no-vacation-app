@@ -13,8 +13,6 @@ function onPlayerReady(event) {
 }
 
 function startPlayer(videoCategory, videoIDCounter){
-    console.log(videoIDCounter);
-    console.log(videoCategory);
     if (player) {
         player.loadVideoById(allVideos[videoCategory][videoIDCounter]);
     } else {
@@ -55,12 +53,10 @@ function handleRightArrowNext() {
 
         timeOut = setTimeout(function() {
             $('#js-next-button').hide();
-        }, 4000);
+        }, 2000);
     });
 
     $('#js-next-button').on('click', function(event) {
-        console.log(videoIDCounter);
-        console.log(videoCategory);
         event.preventDefault();
         if (videoIDCounter < 4) {
             videoIDCounter++;
@@ -79,12 +75,10 @@ function handleLeftArrowPrevious() {
 
         timeOut = setTimeout(function() {
             $('#js-previous-button').hide();
-        }, 4000);
+        }, 2000);
     });
 
     $('#js-previous-button').on('click', function(event) {
-        console.log(videoIDCounter);
-        console.log(videoCategory);
         event.preventDefault();
         if (videoIDCounter > 0) {
             videoIDCounter--;
@@ -103,13 +97,11 @@ function handleHeaderHome() {
 
         timeOut = setTimeout(function() {
             $('#header-home').hide();
-        }, 4000);
+        }, 2000);
     });
 
     $('#header-home').on('click', function(event) {
         videoIDCounter = 0;
-        console.log(videoIDCounter);
-        console.log(videoCategory);
         player.stopVideo();
         $('#js-video-page').hide();
         $('#landing').show();
