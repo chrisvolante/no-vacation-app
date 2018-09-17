@@ -14,24 +14,6 @@ function onPlayerReady(event) {
     setTimeout(fn, 1000);
 }
 
-function renderSplashPage() {
-    for(let key in allVideos)
-        {
-            $('#js-splash-page').append(`<button class="category-button" data-ref="${key}">${key}</button>`)
-        } 
-    handleCategoryButton();
-}
-
-function handleCategoryButton() {
-    $('.category-button').on('click', function(event) {
-        event.preventDefault();
-        $('#js-video-page').show();
-        videoCategory = $(this).attr("data-ref");
-        videoIDCounter = 0;
-        startPlayer(videoCategory, videoIDCounter);
-    })
-}
-
 function startPlayer(videoCategory, videoIDCounter){
     if (player) {
         player.loadVideoById(allVideos[videoCategory][videoIDCounter]);
@@ -89,7 +71,8 @@ function handleHeaderHome() {
 function handleLandingPage(){
     $('.category').on('click', function(event) {
         console.log(this.id);
-        let videoCategory = this.id
+        let videoCategory = this.id;
+        console.log(videoCategory);
         $('#landing').hide();
         $('#mainplayer').show()
         $('#js-video-page').show();
@@ -100,7 +83,6 @@ function handleLandingPage(){
 }
 
 function driver() {
-    // renderSplashPage();
     handleRightArrowNext();
     handleLeftArrowPrevious();
     handleHeaderHome();

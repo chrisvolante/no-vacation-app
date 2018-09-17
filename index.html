@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <title>Thinkful-Capstone1-API</title>
 </head>
 <body>
@@ -14,12 +15,27 @@
         <div id="mainlanding">
             Welcome, please choose a category below
         </div>
-        <div class="category" id="Nature">
-            Nature
+        <div class="row">
+            <div class="category" id="Nature">
+                Nature
+            </div>
+            <div class="category" id="Animals">
+                Animals
+            </div>
+            <div class="category" id="Cities">
+                Cities
+            </div>
         </div>
-
-        <div class="category" id="Animals">
-            Animals
+        <div class="row">
+            <div class="category" id="Water">
+                Water
+            </div>
+            <div class="category" id="Space">
+                Space
+            </div>
+            <div class="category" id="Abstract">
+                Abstract
+            </div>
         </div>
     </div>
     <main role="main" id="mainplayer">
@@ -27,9 +43,9 @@
         <section role="video-page" class="video-page" id="js-video-page">
             <div class="background-video">
                 <div class="overlay">
-                    <h1 id="header-home">Thinkful-Capstone1-API</h1>
-                    <button class="previous-button" id="js-previous-button" type="button">Previous</button>
-                    <button class="next-button" id="js-next-button" type="button">Next</button>
+                    <h1 id="header-home">Home</h1>
+                    <i class="fas fa-angle-left previous-button" id="js-previous-button"></i>
+                    <i class="fas fa-angle-right next-button" id="js-next-button"></i>
                 </div>
                 <div id="player"></div>
             </div>
