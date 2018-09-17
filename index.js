@@ -53,7 +53,7 @@ function handleRightArrowNext() {
 
         timeOut = setTimeout(function() {
             $('#js-next-button').hide();
-        }, 2000);
+        }, 1000);
     });
 
     $('#js-next-button').on('click', function(event) {
@@ -75,7 +75,7 @@ function handleLeftArrowPrevious() {
 
         timeOut = setTimeout(function() {
             $('#js-previous-button').hide();
-        }, 2000);
+        }, 1000);
     });
 
     $('#js-previous-button').on('click', function(event) {
@@ -97,7 +97,7 @@ function handleHeaderHome() {
 
         timeOut = setTimeout(function() {
             $('#header-home').hide();
-        }, 2000);
+        }, 1000);
     });
 
     $('#header-home').on('click', function(event) {
