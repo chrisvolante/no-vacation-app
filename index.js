@@ -13,8 +13,8 @@ function onPlayerReady(event) {
 }
 
 function startPlayer(videoCategory, videoIDCounter){
-    console.log(videoCategory);
     console.log(videoIDCounter);
+    console.log(videoCategory);
     if (player) {
         player.loadVideoById(allVideos[videoCategory][videoIDCounter]);
     } else {
@@ -40,7 +40,7 @@ function handleLandingPage(){
         $('#landing').hide();
         $('#mainplayer').show()
         $('#js-video-page').show();
-        startPlayer(videoCategory, 0);
+        startPlayer(videoCategory, videoIDCounter);
     });
 }
 
@@ -50,21 +50,22 @@ function handleRightArrowNext() {
         if (timeOut !== null) {
             $('#js-next-button').show();
             clearTimeout(timeOut);
-        }
+        };
 
         timeOut = setTimeout(function() {
             $('#js-next-button').hide();
-        }, 3000);
+        }, 2000);
     });
 
     $('#js-next-button').on('click', function(event) {
+        console.log(videoIDCounter);
+        console.log(videoCategory);
         event.preventDefault();
         if (videoIDCounter < 4) {
             videoIDCounter++;
             player.loadVideoById(allVideos[videoCategory][videoIDCounter]);
-        }
+        };
     });
-
 }
 
 function handleLeftArrowPrevious() {
@@ -73,19 +74,21 @@ function handleLeftArrowPrevious() {
         if (timeOut !== null) {
             $('#js-previous-button').show();
             clearTimeout(timeOut);
-        }
+        };
 
         timeOut = setTimeout(function() {
             $('#js-previous-button').hide();
-        }, 3000);
+        }, 2000);
     });
 
     $('#js-previous-button').on('click', function(event) {
+        console.log(videoIDCounter);
+        console.log(videoCategory);
         event.preventDefault();
         if (videoIDCounter > 0) {
             videoIDCounter--;
             player.loadVideoById(allVideos[videoCategory][videoIDCounter]);
-        }
+        };
     });
 }
 
@@ -95,18 +98,19 @@ function handleHeaderHome() {
         if (timeOut !== null) {
             $('#header-home').show();
             clearTimeout(timeOut);
-        }
+        };
 
         timeOut = setTimeout(function() {
             $('#header-home').hide();
-        }, 3000);
+        }, 2000);
     });
 
     $('#header-home').on('click', function(event) {
         videoIDCounter = 0;
+        console.log(videoIDCounter);
+        console.log(videoCategory);
         player.stopVideo();
         $('#js-video-page').hide();
-        $('#js-splash-page').show();
         $('#landing').show();
     });
 }

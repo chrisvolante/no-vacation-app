@@ -18,6 +18,10 @@
     font-family: Montserrat;
 }
 
+#mainlanding h1 {
+    margin-bottom: 60px;
+}
+
 .row {
     text-align: center;
 }
