@@ -69,7 +69,6 @@ function handleHeaderHome() {
         $('#js-video-page').hide();
         $('#js-splash-page').show();
         $('#landing').show();
-        
     });
 }
 
