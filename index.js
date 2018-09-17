@@ -1,3 +1,4 @@
+//This code loads the IFrame Player API code asynchronously.
 var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -7,11 +8,13 @@ var player;
 var videoIDCounter = 0;
 var videoCategory = 'Nature';
 
+//The API will call this function when the video player is ready.
 function onPlayerReady(event) {
     var fn = function(){ player.playVideo(); } 
     setTimeout(fn, 1000);
 }
 
+//This function creates an <iframe> (and YouTube player) after the API code downloads.
 function startPlayer(videoCategory, videoIDCounter){
     if (player) {
         player.loadVideoById(allVideos[videoCategory][videoIDCounter]);
@@ -35,6 +38,8 @@ function startPlayer(videoCategory, videoIDCounter){
 
 function handleLandingPage(){
     $('.category').on('click', function(event) {
+
+        //listens for which category user chooses and starts the YT player.
         videoCategory = this.id;
         $('#landing').hide();
         $('#mainplayer').show()
@@ -44,6 +49,8 @@ function handleLandingPage(){
 }
 
 function handleRightArrowNext() {
+
+    //makes right arrow appear and disappear.
     let timeOut = null;
     $('#js-video-page').on('mousemove', function() {
         if (timeOut !== null) {
@@ -56,6 +63,7 @@ function handleRightArrowNext() {
         }, 1000);
     });
 
+    //listens for right arrow to be clicked and iterates to the next video.
     $('#js-next-button').on('click', function(event) {
         event.preventDefault();
         if (videoIDCounter < 4) {
@@ -66,6 +74,8 @@ function handleRightArrowNext() {
 }
 
 function handleLeftArrowPrevious() {
+
+    //makes left arrow appear and disappear.
     let timeOut = null;
     $('#js-video-page').on('mousemove', function() {
         if (timeOut !== null) {
@@ -78,6 +88,7 @@ function handleLeftArrowPrevious() {
         }, 1000);
     });
 
+    //listens for left arrow to be clicked and goes to the previous video.
     $('#js-previous-button').on('click', function(event) {
         event.preventDefault();
         if (videoIDCounter > 0) {
@@ -88,6 +99,8 @@ function handleLeftArrowPrevious() {
 }
 
 function handleHeaderHome() {
+
+    //makes header icon appear and disappear.
     let timeOut = null;
     $('#js-video-page').on('mousemove', function() {
         if (timeOut !== null) {
@@ -100,6 +113,7 @@ function handleHeaderHome() {
         }, 1000);
     });
 
+    //listens for home icon to be clicked and goes back to landing page.
     $('#header-home').on('click', function(event) {
         videoIDCounter = 0;
         player.stopVideo();
@@ -107,6 +121,7 @@ function handleHeaderHome() {
         $('#landing').show();
     });
 }
+
 function driver() {
     handleLandingPage();
     handleRightArrowNext();

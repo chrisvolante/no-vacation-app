@@ -16,11 +16,17 @@
 
 #mainlanding h1, p {
     font-family: Montserrat;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 #mainlanding h1 {
     margin-bottom: 60px;
     padding-top: 145px; 
+}
+
+#mainlanding p{
+    font-size: 22px;
 }
 
 .container-row {
@@ -106,4 +112,10 @@
     top: 50%;
     color: white;
     font-size: 50px;
+}
+
+@media only screen and (max-width: 500px) {
+    #mainlanding p {
+        padding-top: 250px;
+    }
 }
