@@ -13,6 +13,8 @@ function onPlayerReady(event) {
 }
 
 function startPlayer(videoCategory, videoIDCounter){
+    console.log(videoCategory);
+    console.log(videoIDCounter);
     if (player) {
         player.loadVideoById(allVideos[videoCategory][videoIDCounter]);
     } else {
@@ -43,6 +45,18 @@ function handleLandingPage(){
 }
 
 function handleRightArrowNext() {
+    let timeOut = null;
+    $('#js-video-page').on('mousemove', function() {
+        if (timeOut !== null) {
+            $('#js-next-button').show();
+            clearTimeout(timeOut);
+        }
+
+        timeOut = setTimeout(function() {
+            $('#js-next-button').hide();
+        }, 3000);
+    });
+
     $('#js-next-button').on('click', function(event) {
         event.preventDefault();
         if (videoIDCounter < 4) {
@@ -50,9 +64,22 @@ function handleRightArrowNext() {
             player.loadVideoById(allVideos[videoCategory][videoIDCounter]);
         }
     });
+
 }
 
 function handleLeftArrowPrevious() {
+    let timeOut = null;
+    $('#js-video-page').on('mousemove', function() {
+        if (timeOut !== null) {
+            $('#js-previous-button').show();
+            clearTimeout(timeOut);
+        }
+
+        timeOut = setTimeout(function() {
+            $('#js-previous-button').hide();
+        }, 3000);
+    });
+
     $('#js-previous-button').on('click', function(event) {
         event.preventDefault();
         if (videoIDCounter > 0) {
@@ -63,6 +90,18 @@ function handleLeftArrowPrevious() {
 }
 
 function handleHeaderHome() {
+    let timeOut = null;
+    $('#js-video-page').on('mousemove', function() {
+        if (timeOut !== null) {
+            $('#header-home').show();
+            clearTimeout(timeOut);
+        }
+
+        timeOut = setTimeout(function() {
+            $('#header-home').hide();
+        }, 3000);
+    });
+
     $('#header-home').on('click', function(event) {
         videoIDCounter = 0;
         player.stopVideo();
@@ -71,7 +110,6 @@ function handleHeaderHome() {
         $('#landing').show();
     });
 }
-
 function driver() {
     handleLandingPage();
     handleRightArrowNext();

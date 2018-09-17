@@ -15,7 +15,7 @@
 }
 
 #mainlanding h1, p {
-    font-family: Helvetica;
+    font-family: Montserrat;
 }
 
 .row {
@@ -34,6 +34,11 @@
 
 .category img {
     border-radius: 15px;
+}
+
+.category p {
+    font-family: Helvetica;
+    margin-bottom: 40px;
 }
 
  #mainplayer {
