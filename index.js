@@ -37,6 +37,7 @@ function startPlayer(videoCategory, videoIDCounter){
 }
 
 //This function listens for which category user chooses and starts the appropriate video(s).
+function handleLandingPage() {
     $('.category').on('click', function(event) {
         videoCategory = this.id;
         $('#landing').hide();
