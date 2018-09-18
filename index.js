@@ -36,10 +36,8 @@ function startPlayer(videoCategory, videoIDCounter){
     };
 }
 
-function handleLandingPage(){
+//This function listens for which category user chooses and starts the appropriate video(s).
     $('.category').on('click', function(event) {
-
-        //listens for which category user chooses and starts the YT player.
         videoCategory = this.id;
         $('#landing').hide();
         $('#mainplayer').show()
@@ -50,7 +48,7 @@ function handleLandingPage(){
 
 function handleRightArrowNext() {
 
-    //makes right arrow appear and disappear.
+    //This code makes right arrow appear and disappear.
     let timeOut = null;
     $('#js-video-page').on('mousemove', function() {
         if (timeOut !== null) {
@@ -63,7 +61,7 @@ function handleRightArrowNext() {
         }, 1000);
     });
 
-    //listens for right arrow to be clicked and iterates to the next video.
+    //This code listens for right arrow to be clicked and iterates to the next video.
     $('#js-next-button').on('click', function(event) {
         event.preventDefault();
         if (videoIDCounter < 4) {
@@ -75,7 +73,7 @@ function handleRightArrowNext() {
 
 function handleLeftArrowPrevious() {
 
-    //makes left arrow appear and disappear.
+    //This code makes left arrow appear and disappear.
     let timeOut = null;
     $('#js-video-page').on('mousemove', function() {
         if (timeOut !== null) {
@@ -88,7 +86,7 @@ function handleLeftArrowPrevious() {
         }, 1000);
     });
 
-    //listens for left arrow to be clicked and goes to the previous video.
+    //This code listens for left arrow to be clicked and goes to the previous video.
     $('#js-previous-button').on('click', function(event) {
         event.preventDefault();
         if (videoIDCounter > 0) {
@@ -100,7 +98,7 @@ function handleLeftArrowPrevious() {
 
 function handleHeaderHome() {
 
-    //makes header icon appear and disappear.
+    //This code makes header icon appear and disappear.
     let timeOut = null;
     $('#js-video-page').on('mousemove', function() {
         if (timeOut !== null) {
@@ -113,7 +111,7 @@ function handleHeaderHome() {
         }, 1000);
     });
 
-    //listens for home icon to be clicked and goes back to landing page.
+    //This code listens for home icon to be clicked and goes back to landing page.
     $('#header-home').on('click', function(event) {
         videoIDCounter = 0;
         player.stopVideo();
@@ -122,6 +120,7 @@ function handleHeaderHome() {
     });
 }
 
+//This function calls all the functions that run the app.
 function driver() {
     handleLandingPage();
     handleRightArrowNext();
@@ -129,4 +128,5 @@ function driver() {
     handleHeaderHome();
 }
 
+//This runs the app.
 $(driver);
