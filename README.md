@@ -13,8 +13,8 @@ Link: https://chrisvolante.github.io/no-vacation/
 Screenshots:
 ![landing-page](/screenshots/screenshot-landing.png)
 ![landing-page](/screenshots/screenshot-nature.png)
-![landing-page](/screenshots/screenshot-animal.png)
-![landing-page](/screenshots/screenshot-cities.png)
+![landing-page](/screenshots/screenshot-animals.png)
+![landing-page](/screenshots/screenshot-city.png)
 ![landing-page](/screenshots/screenshot-water.png)
 ![landing-page](/screenshots/screenshot-space.png)
 ![landing-page](/screenshots/screenshot-abstract.png)
