@@ -42,7 +42,6 @@
 
 .category {
     display: inline-block;
-    height: 160px;
     width: 253px;
     color: black;
     font-size: 17px;
@@ -50,8 +49,14 @@
     margin: 15px;
 }
 
+.category:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
 .category img {
     border-radius: 15px;
+    
 }
 
 .category p {
