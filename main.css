@@ -84,14 +84,18 @@ p {
 .video-thumb {
     display: inline-block;
     width: 332px;
-    height: 187px;
+    max-height: 187px;
     position: relative;
+}
+
+.video-thumb:hover {
+    cursor: pointer;
 }
 
 .video-thumb-image {
     opacity: 1;
     width: 100%;
-    height: auto;
+    height: 187px;
     transition: .5 ease;
     backface-visibility: hidden;
 }
@@ -139,14 +143,24 @@ p {
     z-index:9999;
     color:#fff;
     opacity:0.8;
-    font-size: 45pt;
+    font-size: 45pt;    
+}
+
+#header-home:hover {
+    cursor: pointer;
+    transform: scale(1.05);
 }
 
 .back-to-home {
     width: 100%;
     height: 60px;
     background-color: white;
-    text-align: center;
+    text-align: center;    
+}
+
+#results-home:hover {
+    cursor: pointer;
+    transform: scale(1.05);
 }
 
 #results-home {

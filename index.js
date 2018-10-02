@@ -7,7 +7,7 @@ function getDataFromApi(searchTerm, callback) {
         part: 'snippet',
         key: YOUTUBE_API_KEY,
         q: searchTerm + 'relaxing',
-        maxResults: '20'
+        maxResults: '50'
     };
     $.getJSON(YOUTUBE_SEARCH_URL, query, callback);
 }
@@ -17,7 +17,7 @@ function renderResult(result) {
         <div class="video-thumb">
             <img class="video-thumb-image" src="${result.snippet.thumbnails.medium.url}">
             <div class="video-title-layer">
-                <p class="video-title" data-id="${result.id.videoId}">${result.snippet.title}</p>
+                <p class="video-title" data-id="${result.id.videoId}">${result.snippet.title.substring(0, 75)}</p>
             </div>
         </div>
     `).show();
@@ -32,6 +32,7 @@ function displayYouTubeSearchData(data) {
 function handleCategoryThumb() {
     $('.category').on('click', function (event) {
         userQuery = this.id;
+        window.scrollTo(0, 0);
         getDataFromApi(userQuery, displayYouTubeSearchData);
         $('#landing').hide();
         $('.search-results').show();
