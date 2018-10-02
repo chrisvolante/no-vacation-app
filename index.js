@@ -70,9 +70,9 @@ function handleHeaderHome() {
     $('#header-home').on('click', function (event) {
         console.log("header home button clicked");
         //This code stops the video from playing.
-        $("iframe").each(function() { 
-            let src= $(this).attr('src');
-            $(this).attr('src',src);  
+        $("iframe").each(function () {
+            let src = $(this).attr('src');
+            $(this).attr('src', src);
         });
         //This code clears results page, hides the video, and shows the landing page.
         $('.js-search-results').html("");
