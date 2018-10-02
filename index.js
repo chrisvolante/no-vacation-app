@@ -1,131 +1,97 @@
-//This code loads the IFrame Player API code asynchronously.
-var tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+let YOUTUBE_SEARCH_URL = 'https://www.googleapis.com/youtube/v3/search';
+let YOUTUBE_API_KEY = 'AIzaSyCo6gCJITCrbbOihhUkEMXPaDRYyYYurbw';
 
-var player;
-var videoIDCounter = 0;
-var videoCategory = 'Nature';
-
-//The API will call this function when the video player is ready.
-function onPlayerReady(event) {
-    var fn = function(){ player.playVideo(); } 
-    setTimeout(fn, 1000);
-}
-
-//This function creates an <iframe> (and YouTube player) after the API code downloads.
-function startPlayer(videoCategory, videoIDCounter){
-    if (player) {
-        player.loadVideoById(allVideos[videoCategory][videoIDCounter]);
-    } else {
-        player = new YT.Player('player', {
-            videoId: allVideos[videoCategory][videoIDCounter],
-            events: {
-                'onReady': onPlayerReady
-            },
-            playerVars: {
-                autoplay: 1,
-                start: 38,
-                controls: 0,
-                modestbranding: 1,
-                showinfo: 0,
-                loop: 1
-            }
-          });
+function getDataFromApi(searchTerm, callback) {
+    console.log(searchTerm);
+    let query = {
+        part: 'snippet',
+        key: YOUTUBE_API_KEY,
+        q: searchTerm + 'relaxing',
+        maxResults: '20'
     };
+    $.getJSON(YOUTUBE_SEARCH_URL, query, callback);
 }
 
-//This function listens for which category user chooses and starts the appropriate video(s).
-function handleLandingPage() {
-    $('.category').on('click', function(event) {
-        videoCategory = this.id;
+function renderResult(result) {
+    $('.js-search-results').append(`
+        <div class="video-thumb">
+            <img class="video-thumb-image" src="${result.snippet.thumbnails.medium.url}">
+            <div class="video-title-layer">
+                <p class="video-title" data-id="${result.id.videoId}">${result.snippet.title}</p>
+            </div>
+        </div>
+    `).show();
+}
+
+function displayYouTubeSearchData(data) {
+    data.items.forEach(element => {
+        renderResult(element);
+    });
+}
+
+function handleCategoryThumb() {
+    $('.category').on('click', function (event) {
+        userQuery = this.id;
+        getDataFromApi(userQuery, displayYouTubeSearchData);
         $('#landing').hide();
-        $('#mainplayer').show()
-        $('#js-video-page').show();
-        startPlayer(videoCategory, videoIDCounter);
+        $('.search-results').show();
+    })
+}
+
+function handleImageClick() {
+    $('.js-search-results').on('click', '.video-title', function (event) {
+        let videoId = $(this).attr("data-id");
+        $('.search-results').hide();
+        $('.js-search-results').html("");
+        $('.video-player').html("");
+        $('#mainplayer').show();
+        $('.video-player').append(`
+            <iframe width="100%" height="100%" src="http://www.youtube.com/embed/${videoId}?wmode=opaque&autoplay=0&controls=1" frameborder="0"></iframe>`);
     });
 }
 
-function handleRightArrowNext() {
-
-    //This code makes right arrow appear and disappear.
-    let timeOut = null;
-    $('#js-video-page').on('mousemove', function() {
-        if (timeOut !== null) {
-            $('#js-next-button').show();
-            clearTimeout(timeOut);
-        };
-
-        timeOut = setTimeout(function() {
-            $('#js-next-button').hide();
-        }, 1000);
-    });
-
-    //This code listens for right arrow to be clicked and iterates to the next video.
-    $('#js-next-button').on('click', function(event) {
-        event.preventDefault();
-        if (videoIDCounter < 4) {
-            videoIDCounter++;
-            player.loadVideoById(allVideos[videoCategory][videoIDCounter]);
-        };
-    });
-}
-
-function handleLeftArrowPrevious() {
-
-    //This code makes left arrow appear and disappear.
-    let timeOut = null;
-    $('#js-video-page').on('mousemove', function() {
-        if (timeOut !== null) {
-            $('#js-previous-button').show();
-            clearTimeout(timeOut);
-        };
-
-        timeOut = setTimeout(function() {
-            $('#js-previous-button').hide();
-        }, 1000);
-    });
-
-    //This code listens for left arrow to be clicked and goes to the previous video.
-    $('#js-previous-button').on('click', function(event) {
-        event.preventDefault();
-        if (videoIDCounter > 0) {
-            videoIDCounter--;
-            player.loadVideoById(allVideos[videoCategory][videoIDCounter]);
-        };
+function handleResultsHome() {
+    $('.back-to-home').on('click', function (event) {
+        $('.js-search-results').html("");
+        $('.search-results').hide();
+        $('#landing').show();
     });
 }
 
 function handleHeaderHome() {
-
     //This code makes header icon appear and disappear.
-    let timeOut = null;
-    $('#js-video-page').on('mousemove', function() {
-        if (timeOut !== null) {
-            $('#header-home').show();
-            clearTimeout(timeOut);
-        };
+    // let timeOut = null;
+    // $('#mainplayer').on('mousemove', function () {
+    //     if (timeOut !== null) {
+    //         $('#header-home').show();
+    //         clearTimeout(timeOut);
+    //     };
 
-        timeOut = setTimeout(function() {
-            $('#header-home').hide();
-        }, 1000);
-    });
+    //     timeOut = setTimeout(function () {
+    //         $('#header-home').hide();
+    //     }, 5000);
+    // });
 
     //This code listens for home icon to be clicked and goes back to landing page.
-    $('#header-home').on('click', function(event) {
-        videoIDCounter = 0;
-        player.stopVideo();
-        $('#js-video-page').hide();
+    $('#header-home').on('click', function (event) {
+        console.log("header home button clicked");
+        //This code stops the video from playing.
+        $("iframe").each(function() { 
+            let src= $(this).attr('src');
+            $(this).attr('src',src);  
+        });
+        
+        $('.js-search-results').html("");
+        $('#mainplayer').hide();
         $('#landing').show();
     });
 }
 
 //This function calls all the functions that run the app.
 function driver() {
-    handleLandingPage();
-    handleRightArrowNext();
-    handleLeftArrowPrevious();
+    handleCategoryThumb();
+    handleImageClick();
+    handleResultsHome();
     handleHeaderHome();
 }
 
