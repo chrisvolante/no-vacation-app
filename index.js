@@ -52,7 +52,7 @@ function handleImageClick() {
         $('.video-player').html("");
         $('#mainplayer').show();
         $('.video-player').append(`
-            <iframe width="100%" height="100%" src="http://www.youtube.com/embed/${videoId}?wmode=opaque&autoplay=0&controls=1" frameborder="0"></iframe>`);
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${videoId}?wmode=opaque&autoplay=0&controls=1" frameborder="0"></iframe>`);
     });
 }
 
