@@ -3,7 +3,6 @@ let YOUTUBE_API_KEY = 'AIzaSyCo6gCJITCrbbOihhUkEMXPaDRYyYYurbw';
 
 //This function makes a request to the YOUTUBE API.
 function getDataFromApi(searchTerm, callback) {
-    console.log(searchTerm);
     let query = {
         part: 'snippet',
         key: YOUTUBE_API_KEY,
@@ -68,7 +67,6 @@ function handleResultsHome() {
 //This code listens for home icon on the video page to be clicked, stops the video, and goes back to landing page.
 function handleHeaderHome() {
     $('#header-home').on('click', function (event) {
-        console.log("header home button clicked");
         //This code stops the video from playing.
         $("iframe").each(function () {
             let src = $(this).attr('src');
