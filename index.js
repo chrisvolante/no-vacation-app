@@ -1,6 +1,7 @@
 let YOUTUBE_SEARCH_URL = 'https://www.googleapis.com/youtube/v3/search';
 let YOUTUBE_API_KEY = 'AIzaSyCo6gCJITCrbbOihhUkEMXPaDRYyYYurbw';
 
+//This function makes a request to the YOUTUBE API.
 function getDataFromApi(searchTerm, callback) {
     console.log(searchTerm);
     let query = {
@@ -12,6 +13,7 @@ function getDataFromApi(searchTerm, callback) {
     $.getJSON(YOUTUBE_SEARCH_URL, query, callback);
 }
 
+//This functions renders the results of the API request.
 function renderResult(result) {
     $('.js-search-results').append(`
         <div class="video-thumb">
@@ -23,12 +25,14 @@ function renderResult(result) {
     `).show();
 }
 
+//This function loops through a JSON object from the API request and calls a function that renders it into HTML for each element in the object.
 function displayYouTubeSearchData(data) {
     data.items.forEach(element => {
         renderResult(element);
     });
 }
 
+//This function listens for the user to choose a categeory from the landing page.
 function handleCategoryThumb() {
     $('.category').on('click', function (event) {
         userQuery = this.id;
@@ -39,6 +43,7 @@ function handleCategoryThumb() {
     })
 }
 
+//This function listens for the user to click a thumbnail on the results page and plays the video fullscreen.
 function handleImageClick() {
     $('.js-search-results').on('click', '.video-title', function (event) {
         let videoId = $(this).attr("data-id");
@@ -51,6 +56,7 @@ function handleImageClick() {
     });
 }
 
+//This function listens for home icon on the results page to be clicked and goes back to landing page.
 function handleResultsHome() {
     $('.back-to-home').on('click', function (event) {
         $('.js-search-results').html("");
@@ -59,21 +65,8 @@ function handleResultsHome() {
     });
 }
 
+//This code listens for home icon on the video page to be clicked, stops the video, and goes back to landing page.
 function handleHeaderHome() {
-    //This code makes header icon appear and disappear.
-    // let timeOut = null;
-    // $('#mainplayer').on('mousemove', function () {
-    //     if (timeOut !== null) {
-    //         $('#header-home').show();
-    //         clearTimeout(timeOut);
-    //     };
-
-    //     timeOut = setTimeout(function () {
-    //         $('#header-home').hide();
-    //     }, 5000);
-    // });
-
-    //This code listens for home icon to be clicked and goes back to landing page.
     $('#header-home').on('click', function (event) {
         console.log("header home button clicked");
         //This code stops the video from playing.
@@ -81,7 +74,7 @@ function handleHeaderHome() {
             let src= $(this).attr('src');
             $(this).attr('src',src);  
         });
-        
+        //This code clears results page, hides the video, and shows the landing page.
         $('.js-search-results').html("");
         $('#mainplayer').hide();
         $('#landing').show();
