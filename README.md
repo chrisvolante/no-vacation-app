@@ -8,7 +8,7 @@ Our oddly satisfying videos let you escape anytime you're feeling stressed.
 
 Let No Vacation help you relax, decorate your home, set your mood, or let your mind drift.
 
-Link: https://chrisvolante.github.io/no-vacation/
+Link: https://chrisvolante.github.io/no-vacation-app/
 
 Screenshots:
 ![landing-page](/screenshots/screenshot-landing.png)
