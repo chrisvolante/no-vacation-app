@@ -11,13 +11,13 @@ Let No Vacation help you relax, decorate your home, set your mood, or let your m
 Link: https://chrisvolante.github.io/no-vacation-app/
 
 Screenshots:
-![landing-page](/screenshots/screenshot-landing.png)
-![landing-page](/screenshots/screenshot-nature.png)
-![landing-page](/screenshots/screenshot-animals.png)
-![landing-page](/screenshots/screenshot-city.png)
-![landing-page](/screenshots/screenshot-water.png)
-![landing-page](/screenshots/screenshot-space.png)
-![landing-page](/screenshots/screenshot-abstract.png)
+![landing](/screenshots/landing.png)
+![nature](/screenshots/nature.png)
+![animals](/screenshots/animals.png)
+![cities](/screenshots/cities.png)
+![water](/screenshots/water.png)
+![space](/screenshots/space.png)
+![abstract](/screenshots/abstract.png)
 
 Technology used:
 * HTML
